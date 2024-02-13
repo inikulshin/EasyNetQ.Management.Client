@@ -1,13 +1,11 @@
-﻿namespace EasyNetQ.Management.Client.Model;
+﻿namespace EasyNetQ.Management.Client;
 
 public record LengthsCriteria(int LengthsAge, int LengthsIncr)
 {
-    public IReadOnlyDictionary<string, string> ToQueryParameters()
-    {
-        return new Dictionary<string, string>
+    public readonly IEnumerable<KeyValuePair<string, string>> QueryParameters =
+        new KeyValuePair<string, string>[]
         {
-            { "lengths_age", LengthsAge.ToString() },
-            { "lengths_incr", LengthsIncr.ToString() }
+            new KeyValuePair<string, string>("lengths_age", LengthsAge.ToString()),
+            new KeyValuePair<string, string>("lengths_incr", LengthsIncr.ToString())
         };
-    }
 }
